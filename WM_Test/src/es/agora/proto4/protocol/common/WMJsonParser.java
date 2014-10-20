@@ -31,23 +31,45 @@ public class WMJsonParser
                                      // .setPrettyPrinting()
                                      .create();
 	
-	// Protocolo de Registro Web - Móvil  
+	// Protocolo de Registro Web - Mï¿½vil  
 	private static final String WMR0_RServerError="RServerError";
 	private static final String WMR2_RSMSRequest="RSmsRequest";
 	private static final String WMR3_RRegisterSuccess="RRegisterSuccess";
 
-	// Protocolo de Actualización de Licencia Web - Móvil
+	// Protocolo de Actualizaciï¿½n de Licencia Web - Mï¿½vil
 	private static final String WMU0_UServerError= "UServerError";
 	private static final String WMU2_UUpdateSuccess= "UUpdateSuccess";
 
 
-	// Protocolo de Apertura de Puertas Web - Móvil
+	// Protocolo de Apertura de Puertas Web - Mï¿½vil
 	private static final String WMG0_GServerError = "GServerError";
 	private static final String WMG2_GOpenSuccess = "GOpenSuccess";
 
 	public static String toJson(Object o)
 	{
 		return gson.toJson(o);
+	}
+	
+	public static UDP_WMMessage Json2UDP_WM (String jsonStr)
+	{
+		JsonParser parser = new JsonParser();
+		JsonElement je = parser.parse(jsonStr);
+		
+		if(!je.isJsonObject())
+			return null;
+		
+		JsonObject jo = je.getAsJsonObject();
+		
+		if(!jo.has("V")) return null;
+		String V = gson.fromJson(jo.get("V"), String.class);
+		if(!jo.has("M")) return null;
+		JsonObject strm = gson.fromJson(jo.get("M"), JsonObject.class);
+		WM_Message M = Json2WM(strm.toString());
+		
+		if(!jo.has("S")) return null;
+		String S = gson.fromJson(jo.get("S"), String.class);
+		
+		return new UDP_WMMessage(V, M, S);
 	}
 	
 	public static WM_Message Json2WM (String jsonStr)

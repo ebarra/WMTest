@@ -1,35 +1,17 @@
 package es.agora.proto4.protocol.msgs.gates;
 
-import java.io.Serializable;
+import es.agora.proto4.protocol.common.MW_ID;
+import es.agora.proto4.protocol.common.MW_Message;
 
-public class MWG9_GCleanup implements Serializable{
+public class MWG9_GCleanup extends MW_Message
+{
 
-	private final String version= "0.2";
-	private final String cmd= "GCleanup";
-	
-	private final int reqId;
-	
+	private static final String VERSION= "0.2";
+	private static final String CMD= "GCleanup";	
 
 	public MWG9_GCleanup(int reqId)
 	{
-		this.reqId= reqId;
+		super(MW_ID.MWG9_GCleanUp,VERSION,CMD,reqId);
 	}
 
-
-	public String getVersion() {
-		return version;
-	}
-
-
-	public String getCmd() {
-		return cmd;
-	}
-
-
-	public int getReqId() {
-		return reqId;
-	}
-	
-	
-	
 }

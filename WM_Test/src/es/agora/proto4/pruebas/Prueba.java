@@ -15,7 +15,11 @@ public class Prueba
 	 */
 	public static void main(String[] args)
 	{
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().serializeNulls().setPrettyPrinting().create();
+		Gson gson = new GsonBuilder()
+						.excludeFieldsWithoutExposeAnnotation()
+						.serializeNulls()
+						.setPrettyPrinting()
+						.create();
 		
 
 		WM_Message w1= new WMU0_UServerError("0", "UServerError", 44345, 10, "No tengo ni idea de lo que ha pasado");

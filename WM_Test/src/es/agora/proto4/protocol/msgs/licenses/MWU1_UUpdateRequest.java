@@ -1,15 +1,15 @@
 package es.agora.proto4.protocol.msgs.licenses;
 
-import java.io.Serializable;
-
 import com.google.gson.annotations.Expose;
 
-public class MWU1_UUpdateRequest implements Serializable
+import es.agora.proto4.protocol.common.MW_ID;
+import es.agora.proto4.protocol.common.MW_Message;
+
+public class MWU1_UUpdateRequest extends MW_Message
 {
-	@Expose private final String version= "0.2";
-	@Expose private final String cmd= "UUpdateRequest";
+	private static final String VERSION = "0.2";
+	private static final String CMD = "UUpdateRequest";
 	
-	@Expose private final int reqId;
 	@Expose private final long date;
 	@Expose private final String phoneNumber;
 	@Expose private final String simNumber;
@@ -24,26 +24,14 @@ public class MWU1_UUpdateRequest implements Serializable
 			                   int verificationCode
 			                  )
 	{
-		this.reqId = reqId;
+		super(MW_ID.MWU1_UUpdateRequest,VERSION,CMD,reqId);
 		this.date = date;
 		this.phoneNumber = phoneNumber;
 		this.simNumber = simNumber;
 		this.activationCode = activationCode;
 		this.verificationCode = verificationCode;
 	}
-	
-	public String getVersion()
-	{
-		return version;
-	}
-	public String getCmd()
-	{
-		return cmd;
-	}
-	public int getReqId()
-	{
-		return reqId;
-	}
+
 	public long getDate()
 	{
 		return date;

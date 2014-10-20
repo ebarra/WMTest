@@ -1,36 +1,23 @@
 package es.agora.proto4.protocol.msgs.licenses;
 
-import java.io.Serializable;
-
 import com.google.gson.annotations.Expose;
 
-public class MWU0_UUserError implements Serializable
+import es.agora.proto4.protocol.common.MW_ID;
+import es.agora.proto4.protocol.common.MW_Message;
+
+public class MWU0_UUserError extends MW_Message
 {
-	@Expose private final String version= "0.2";
-	@Expose private final String cmd= "UUserError";
+	private static final String VERSION= "0.2";
+	private static final String CMD= "UUserError";
 	
-	@Expose private final int reqId;
+	@Expose private final int errCode;
 	@Expose private final String reason;
 	
-	public MWU0_UUserError(int reqId, String reason)
+	public MWU0_UUserError(int reqId, int errCode, String reason)
 	{
-		this.reqId= reqId;
+		super(MW_ID.MWU0_UUserError,VERSION,CMD,reqId);
+		this.errCode= errCode;
 		this.reason = reason;
-	}
-
-	public String getVersion()
-	{
-		return version;
-	}
-
-	public String getCmd()
-	{
-		return cmd;
-	}
-
-	public int getReqId()
-	{
-		return reqId;
 	}
 
 	public String getReason()

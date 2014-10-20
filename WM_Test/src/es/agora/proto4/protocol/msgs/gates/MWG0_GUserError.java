@@ -1,36 +1,22 @@
 package es.agora.proto4.protocol.msgs.gates;
 
-import java.io.Serializable;
+import es.agora.proto4.protocol.common.MW_ID;
+import es.agora.proto4.protocol.common.MW_Message;
 
-public class MWG0_GUserError implements Serializable{
+public class MWG0_GUserError extends MW_Message
+{
 
-	private final String version= "0.2";
-	private final String cmd= "GUserError";
+	private static final String VERSION= "0.2";
+	private static final String CMD = "GUserError";
 	
-	private final int reqId;
+	private final int errCode;
 	private final String reason;
-	//private final int errCode;
 	
-	public MWG0_GUserError(int reqId, String reason)
+	public MWG0_GUserError(int reqId, int errCode, String reason)
 	{
-		//this.errCode = errCode;
-		this.reqId= reqId;
+		super(MW_ID.MWG0_GUserError,VERSION,CMD,reqId);
+		this.errCode= errCode;
 		this.reason = reason;
-	}
-
-	public String getVersion()
-	{
-		return version;
-	}
-
-	public String getCmd()
-	{
-		return cmd;
-	}
-
-	public int getReqId()
-	{
-		return reqId;
 	}
 
 	public String getReason()

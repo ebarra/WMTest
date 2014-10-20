@@ -1,33 +1,19 @@
 package es.agora.proto4.protocol.msgs.licenses;
 
-import java.io.Serializable;
-
 import com.google.gson.annotations.Expose;
 
-public class MWU9_UCleanup implements Serializable
-{
-	@Expose private final String version= "0.2";
-	@Expose private final String cmd= "RCleanup";
-	
-	@Expose private final int reqId;
+import es.agora.proto4.protocol.common.MW_ID;
+import es.agora.proto4.protocol.common.MW_Message;
 
+public class MWU9_UCleanup extends MW_Message
+{
+	private static final String version= "0.2";
+	private static final String cmd= "RCleanup";
+	
 	public MWU9_UCleanup(int reqId)
 	{
+		super(MW_ID.MWG9_GCleanUp, version, cmd, reqId);
 		this.reqId= reqId;
 	}
 
-	public String getVersion()
-	{
-		return version;
-	}
-
-	public String getCmd()
-	{
-		return cmd;
-	}
-
-	public int getReqId()
-	{
-		return reqId;
-	}
 }

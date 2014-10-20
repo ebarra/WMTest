@@ -1,15 +1,15 @@
 package es.agora.proto4.protocol.msgs.registry;
 
-import java.io.Serializable;
-
 import com.google.gson.annotations.Expose;
 
-public class MWR1_RRegisterRequest implements Serializable
+import es.agora.proto4.protocol.common.MW_ID;
+import es.agora.proto4.protocol.common.MW_Message;
+
+public class MWR1_RRegisterRequest extends MW_Message
 {
-	@Expose private final String version= "0.2";
-	@Expose private final String cmd= "RRegisterRequest";
+	private static final String VERSION = "0.2";
+	private static final String CMD = "RRegisterRequest";
 	
-	@Expose private final int reqId;
 	@Expose private final String rsaPublic;
 	@Expose private final String phoneNumber;
 	@Expose private final String simNumber;
@@ -19,25 +19,10 @@ public class MWR1_RRegisterRequest implements Serializable
 							String phoneNumber,
 							String simNumber)
 	{
-		this.reqId= reqId;
+		super(MW_ID.MWR1_RRegisterRequest,VERSION,CMD,reqId);
 		this.rsaPublic= rsaPublic;
 		this.phoneNumber = phoneNumber;
 		this.simNumber = simNumber;
-	}
-
-	public String getVersion()
-	{
-		return version;
-	}
-
-	public String getCmd()
-	{
-		return cmd;
-	}
-
-	public int getReqId()
-	{
-		return reqId;
 	}
 
 	public String getRsaPublic()
